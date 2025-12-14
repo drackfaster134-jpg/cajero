@@ -20,6 +20,13 @@
 
 
 <div id="menu" style="display:none;">
+<div id="pantallaTransferencia" style="display:none;">
+<h3>🔁 Transferir dinero</h3>
+<input type="text" id="destino" placeholder="Usuario destino">
+<input type="number" id="montoTransferir" placeholder="Monto">
+<button onclick="ejecutarTransferencia()">Confirmar transferencia</button>
+<button onclick="volverMenu()">Cancelar</button>
+</div>
 <p>Bienvenido, <span id="nombre"></span></p>
 <p>Saldo: S/ <span id="saldo"></span></p>
 
@@ -28,10 +35,7 @@
 <button onclick="retirar()">Retirar</button>
 <button onclick="depositar()">Depositar</button>
 <hr>
-<h3>🔁 Transferir dinero</h3>
-<input type="text" id="destino" placeholder="Usuario destino">
-<input type="number" id="montoTransferir" placeholder="Monto a transferir">
-<button onclick="transferir()">Transferir</button>
+<button onclick="abrirTransferencia()">🔁 Transferir</button>
 
 
 <h3>📄 Historial</h3>
