@@ -1,4 +1,27 @@
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || {
+alert("Usuario o PIN incorrecto");
+}
+}
+
+
+function actualizar() {
+document.getElementById("saldo").textContent = usuarios[usuarioActual].saldo;
+const historial = document.getElementById("historial");
+historial.innerHTML = "";
+usuarios[usuarioActual].historial.forEach(m => {
+const li = document.createElement("li");
+li.textContent = m;
+historial.appendChild(li);
+});
+guardar();
+}
+
+
+function retirar() {
+const monto = Number(document.getElementById("monto").value);
+if (monto > 0 && monto <= usuarios[usuarioActual].saldo) {
+usuarios[usuarioActual].saldo -= monto;
+usuarios[usuarioActual].historial.push(`Retiro: -S/ ${monto}`);
 actualizar();
 } else {
 alert("Monto inválido");
@@ -19,14 +42,14 @@ alert("Monto inválido");
 
 
 function abrirTransferencia() {
-document.getElementById("menu").querySelectorAll("input, button").forEach(e => e.style.display = "none");
+document.getElementById("menuPrincipal").style.display = "none";
 document.getElementById("pantallaTransferencia").style.display = "block";
 }
 
 
 function volverMenu() {
 document.getElementById("pantallaTransferencia").style.display = "none";
-document.getElementById("menu").querySelectorAll("input, button").forEach(e => e.style.display = "block");
+document.getElementById("menuPrincipal").style.display = "block";
 }
 
 
