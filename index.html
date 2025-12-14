@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Cajero Automático</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Cajero Automático</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+
 <div class="atm">
-    <h1>🏧 Cajero Automático</h1>
+<h1>🏧 Cajero Automático</h1>
 
-    <div id="login">
-        <p>Ingrese su PIN:</p>
-        <input type="password" id="pin">
-        <button onclick="login()">Ingresar</button>
-    </div>
 
-    <div id="menu" style="display:none;">
-        <p>Saldo: S/ <span id="saldo"></span></p>
-
-        <input type="number" id="monto" placeholder="Monto">
-        <br><br>
-        <button onclick="retirar()">Retirar</button>
-        <button onclick="depositar()">Depositar</button>
-        <br><br>
-        <button onclick="salir()">Salir</button>
-    </div>
+<div id="login">
+<input type="text" id="usuario" placeholder="Usuario">
+<input type="password" id="pin" placeholder="PIN">
+<button onclick="login()">Ingresar</button>
 </div>
+
+
+<div id="menu" style="display:none;">
+<p>Bienvenido, <span id="nombre"></span></p>
+<p>Saldo: S/ <span id="saldo"></span></p>
+
+
+<input type="number" id="monto" placeholder="Monto">
+<button onclick="retirar()">Retirar</button>
+<button onclick="depositar()">Depositar</button>
+
+
+<h3>📄 Historial</h3>
+<ul id="historial"></ul>
+
+
+<button onclick="logout()">Salir</button>
+</div>
+</div>
+
 
 <script src="script.js"></script>
 </body>
