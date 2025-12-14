@@ -1,19 +1,29 @@
 body {
-    background: #0a3d62;
-    font-family: Arial;
-    color: white;
-    text-align: center;
+background: #0a3d62;
+font-family: Arial;
+color: white;
+text-align: center;
 }
+
 
 .atm {
-    background: #1e3799;
-    width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    border-radius: 10px;
+background: #1e3799;
+width: 350px;
+margin: 80px auto;
+padding: 20px;
+border-radius: 12px;
 }
 
+
 input, button {
-    padding: 8px;
-    margin: 5px;
+width: 90%;
+padding: 8px;
+margin: 5px;
+}
+
+
+ul {
+text-align: left;
+max-height: 120px;
+overflow-y: auto;
 }
