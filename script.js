@@ -1,36 +1,4 @@
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || {
-juan: { pin: "1111", saldo: 1000, historial: [] },
-maria: { pin: "2222", saldo: 1500, historial: [] }
-};
-
-
-let usuarioActual = null;
-
-
-function guardar() {
-localStorage.setItem("usuarios", JSON.stringify(usuarios));
-}
-
-
-function login() {
-const user = document.getElementById("usuario").value;
-const pin = document.getElementById("pin").value;
-
-
-if (usuarios[user] && usuarios[user].pin === pin) {
-usuarioActual = user;
-document.getElementById("login").style.display = "none";
-document.getElementById("menu").style.display = "block";
-document.getElementById("nombre").textContent = user;
-actualizar();
-} else {
-alert("Usuario o PIN incorrecto");
-}
-}
-
-
-function actualizar() {
-document.getElementById("saldo").textContent = usuarios[usuarioActual].saldo;
 const historial = document.getElementById("historial");
 historial.innerHTML = "";
 usuarios[usuarioActual].historial.forEach(m => {
@@ -66,8 +34,46 @@ alert("Monto inválido");
 }
 
 
+function transferir() {
+const destino = document.getElementById("destino").value;
+const monto = Number(document.getElementById("montoTransferir").value);
+
+
+if (!usuarios[destino]) {
+alert("Usuario destino no existe");
+return;
+}
+
+
+if (destino === usuarioActual) {
+alert("No puedes transferirte a ti mismo");
+return;
+}
+
+
+if (monto <= 0 || monto > usuarios[usuarioActual].saldo) {
+alert("Monto inválido o saldo insuficiente");
+return;
+}
+
+
+usuarios[usuarioActual].saldo -= monto;
+usuarios[destino].saldo += monto;
+
+
+usuarios[usuarioActual].historial.push(`Transferencia enviada a ${destino}: -S/ ${monto}`);
+usuarios[destino].historial.push(`Transferencia recibida de ${usuarioActual}: +S/ ${monto}`);
+
+
+document.getElementById("destino").value = "";
+document.getElementById("montoTransferir").value = "";
+
+
+actualizar();
+}
+
+
 function logout() {
 usuarioActual = null;
 document.getElementById("menu").style.display = "none";
 document.getElementById("login").style.display = "block";
-}
